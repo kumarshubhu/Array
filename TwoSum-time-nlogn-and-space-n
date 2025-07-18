@@ -1,1 +1,45 @@
+using System;
 
+public class HelloWorld
+{
+     static int[] TwoSum(int[] arr, int target){
+         int[] sortedArray = (int[])arr.Clone();
+         Array.Sort(sortedArray);
+        for(int i=0; i < arr.Length; i++) {
+           int complement = target - sortedArray[i];
+           int result = binarySearch(sortedArray, i+1, arr.Length-1,complement);
+           if(result != -1) {
+               return new int[] {Array.IndexOf(arr, sortedArray[i]), Array.IndexOf(arr, sortedArray[result])};
+           }
+            }
+            return new int[] {-1,-1};
+        }
+        
+        static int binarySearch(int[] arr, int left, int right, int complement) {
+            while(left <= right){
+              int  mid = left + (right-left)/2;
+                if(arr[mid] == complement) {
+                    return mid;
+                }
+                if(arr[mid] > complement){
+                  right = mid -1;  
+                }
+                else {
+                    left = mid + 1;
+                }
+                }
+                return -1;
+            }
+        
+        
+     static void Main(string[] args)
+    {
+        int[] arr = new int[]{11,2,8,5};
+        int target = 19;
+        int[] result = TwoSum(arr,target);
+        Console.WriteLine($"Indices: {string.Join(", ", result)}");
+    }
+}
+    
+    
+   
