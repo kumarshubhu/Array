@@ -1,1 +1,42 @@
+//Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+//You may assume that each input would have exactly one solution, and you may not use the same element twice.
+//You can return the answer in any order.
 
+//Time Complexity: O(n) + O(nlogn) == O(nlogn)
+//Space Complexity: O(n)
+//Sort the array and then use two pointer to find the target.
+
+using System;
+
+public class HelloWorld
+{
+     static int[] TwoSum(int[] arr, int target){
+         int[] sortedArray = (int[])arr.Clone();
+         Array.Sort(sortedArray);
+        int left = 0;
+        int right = sortedArray.Length - 1;
+        while(left<right){
+        if(sortedArray[left] + sortedArray[right] == target) {
+            return new int[] {Array.IndexOf(arr, sortedArray[left]), Array.IndexOf(arr, sortedArray[right])};
+        }
+        else if(sortedArray[left] + sortedArray[right] < target){
+            left++;
+        }
+        else {
+            right--;
+        }
+        }
+        return new int[] {-1,-1};
+     }
+        
+     static void Main(string[] args)
+    {
+        int[] arr = new int[]{11,2,8,5};
+        int target = 10;
+        int[] result = TwoSum(arr,target);
+        Console.WriteLine($"Indices: {string.Join(", ", result)}");
+    }
+}
+    
+    
+   
