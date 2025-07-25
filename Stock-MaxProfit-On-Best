@@ -1,0 +1,25 @@
+//You are given an array prices where prices[i] is the price of a given stock on the ith day.
+//You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+//Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+using System;
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        int[] array = new int[] {1,0,9,2,7};
+        int result = MaxProfit(array);
+        Console.WriteLine ("Max Profit: "+result);
+    }
+    
+    public static int MaxProfit(int[] arr) {
+        int min = arr[0];
+        int max = 0;
+        for(int i =0; i<arr.Length; i++) {
+          min = Math.Min(min, arr[i]);
+          max = Math.Max(max, arr[i] - min);
+        }
+        return max;
+    }
+}
